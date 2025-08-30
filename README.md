@@ -1,69 +1,53 @@
-# React + TypeScript + Vite
+# Multi-Step Form Assignment
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A **mobile-first, multi-step form** built with **React, TypeScript, and Tailwind CSS**, fully driven by a configuration file. Supports **text, radio, and checkbox** question types with validation, inline error messages, and structured navigation.
 
-Currently, two official plugins are available:
+Inspired by **Duolingo App UI**.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Chapters → Screens → Questions structure
+- Text, Radio, and Checkbox question types
+- Validation for required fields
+- Inline error messages
+- Navigation: Back, Continue, Submit
+- Collects answers in `{ questionId: answer }` format
+- Mobile-first responsive design
+- Tailwind CSS for styling
+- Fully configuration-driven (no hardcoding)
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## Project Structure
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+src/
+├─ components/
+│ ├─ Navigation.tsx
+│ ├─ QuestionCheckbox.tsx
+│ ├─ QuestionRadio.tsx
+│ ├─ QuestionText.tsx
+│ ├─ QuestionRenderer.tsx
+│ └─ Screen.tsx
+├─ config/
+│ └─ formConfig.ts
+├─ types/
+│ └─ form.ts
+├─ App.tsx
+├─ main.tsx
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Running Instructions
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1. **Clone the repository:**
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+git clone https://github.com/<your-username>/multi-step-form.git
+cd multi-step-form
+
+2.Install dependencies:
+npm install
+
+3.Run the application locally:
+npm run dev
 ```
