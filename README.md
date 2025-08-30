@@ -20,22 +20,6 @@ Inspired by **Duolingo App UI**.
 
 ---
 
-## Project Structure
-
-src/
-├─ components/
-│ ├─ Navigation.tsx
-│ ├─ QuestionCheckbox.tsx
-│ ├─ QuestionRadio.tsx
-│ ├─ QuestionText.tsx
-│ ├─ QuestionRenderer.tsx
-│ └─ Screen.tsx
-├─ config/
-│ └─ formConfig.ts
-├─ types/
-│ └─ form.ts
-├─ App.tsx
-├─ main.tsx
 
 ## Running Instructions
 
