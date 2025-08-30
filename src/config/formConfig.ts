@@ -31,7 +31,7 @@ export const formConfig: FormConfig = {
           title: "Contact Info",
           questions: [
             {
-              id: "q3",
+              id: "email", // ✅ Updated ID for email validation
               type: "text",
               label: "Email address",
               placeholder: "Enter your email",

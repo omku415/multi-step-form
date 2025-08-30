@@ -21,6 +21,12 @@ function App() {
         if ((q.type === "checkbox" && (!val || val.length === 0)) || (q.type !== "checkbox" && !val)) {
           initialErrors[q.id] = "This field is required";
         }
+
+        // Email format check
+        if (q.type === "text" && q.id === "email" && val) {
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(val)) initialErrors[q.id] = "Enter a valid email address";
+        }
       }
     });
     setErrors(initialErrors);
@@ -30,11 +36,21 @@ function App() {
     setAnswers((prev) => ({ ...prev, [questionId]: value }));
 
     if (question?.required) {
+      let errorMsg = "";
+
       if (question.type === "checkbox") {
-        setErrors((prev) => ({ ...prev, [questionId]: Array.isArray(value) && value.length > 0 ? "" : "This field is required" }));
+        if (!Array.isArray(value) || value.length === 0) errorMsg = "This field is required";
       } else {
-        setErrors((prev) => ({ ...prev, [questionId]: value ? "" : "This field is required" }));
+        if (!value) errorMsg = "This field is required";
+
+        // Email validation
+        if (question.type === "text" && question.id === "email") {
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(value)) errorMsg = "Enter a valid email address";
+        }
       }
+
+      setErrors((prev) => ({ ...prev, [questionId]: errorMsg }));
     } else {
       setErrors((prev) => ({ ...prev, [questionId]: "" }));
     }
@@ -43,6 +59,13 @@ function App() {
   const canContinue = currentScreen.questions.every((q: Question) => {
     if (q.required) {
       const val = answers[q.id];
+
+      // Email validation
+      if (q.type === "text" && q.id === "email") {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return val && emailRegex.test(val);
+      }
+
       if (q.type === "checkbox") return Array.isArray(val) && val.length > 0;
       return val !== undefined && val !== "";
     }
